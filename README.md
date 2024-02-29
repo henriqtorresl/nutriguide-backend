@@ -1,4 +1,4 @@
-# Backend
+# Nutriguide - Backend
 
 Tecnologias usadas neste projeto:
 - [Express](https://expressjs.com/)
@@ -19,4 +19,3 @@ Para mais informações: [Node.js](https://nodejs.org/en/docs).
 - Primeiro fazer o build do projeto: `npm run build`
 - Rodar o comando `vercel`
 - E por último rodar o comando `vercel --prod`
-- url da api do nutriguide: `https://api-nutriguide.vercel.app/`
