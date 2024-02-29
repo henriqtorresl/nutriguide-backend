@@ -1,1 +1,11 @@
-// controller para as feat de login e cadastro...
+import { Request, Response } from "express";
+
+export default class AuthController {
+
+    private service: any;
+
+    constructor() {
+        // instancia o service
+    }
+
+}

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './app/routes/index/routes';
+import routes from './app/routes/index/routes2';
 
 const app = express();
 
