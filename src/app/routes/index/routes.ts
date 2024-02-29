@@ -1,18 +1,17 @@
 import { Router, NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken';
-import Repository from '../database/Repository';
-import User from '../models/Usuario';
-import UsuarioPaciente from '../models/UsuarioPaciente';
-import Service from '../service/Service';
-import ProgressoPaciente from '../models/ProgressoPaciente';
-import Alimento from '../models/Alimento';
-import PlanoAlimentar from '../models/PlanoAlimentar';
-import Avaliacao from "../models/Avaliacao";
-import Post from "../models/Post";
-import Comentario from "../models/Comentario";
+import Repository from '../../database/index/Repository';
+import User from '../../models/Usuario';
+import UsuarioPaciente from '../../models/UsuarioPaciente';
+import Service from '../../service/index/Service';
+import ProgressoPaciente from '../../models/ProgressoPaciente';
+import Alimento from '../../models/Alimento';
+import PlanoAlimentar from '../../models/PlanoAlimentar';
+import Avaliacao from "../../models/Avaliacao";
+import Post from "../../models/Post";
+import Comentario from "../../models/Comentario";
 import nodemailer from "nodemailer";
-import UsuarioComentario from "../models/UsuarioComentario";
-import UsuarioNutricionista from "../models/UsuarioNutricionista";
+import UsuarioComentario from "../../models/UsuarioComentario";
 
 const routes = Router();
 

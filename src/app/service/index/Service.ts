@@ -1,13 +1,13 @@
 import { Transporter } from "nodemailer";
-import Repository from "../database/Repository";
-import Alimento from "../models/Alimento";
-import Avaliacao from "../models/Avaliacao";
-import Comentario from "../models/Comentario";
-import PlanoAlimentar from "../models/PlanoAlimentar";
-import Post from "../models/Post";
-import ProgressoPaciente from "../models/ProgressoPaciente";
-import Usuario from "../models/Usuario";
-import UsuarioPaciente from "../models/UsuarioPaciente";
+import Repository from "../../database/index/Repository";
+import Alimento from "../../models/Alimento";
+import Avaliacao from "../../models/Avaliacao";
+import Comentario from "../../models/Comentario";
+import PlanoAlimentar from "../../models/PlanoAlimentar";
+import Post from "../../models/Post";
+import ProgressoPaciente from "../../models/ProgressoPaciente";
+import Usuario from "../../models/Usuario";
+import UsuarioPaciente from "../../models/UsuarioPaciente";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 export default class Service {
