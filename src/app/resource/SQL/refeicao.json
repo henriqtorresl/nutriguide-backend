@@ -1,0 +1,3 @@
+{
+    "trazerTodas": "SELECT * FROM tb_refeicao"
+}

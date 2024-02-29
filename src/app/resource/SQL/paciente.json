@@ -1,0 +1,7 @@
+{
+    "inserir": " INSERT INTO tb_paciente (peso, altura, queixa, comorbidades, medicacoes, id_usuario, nutricionista_responsavel) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    "trazerTodos": "SELECT * FROM tb_paciente INNER JOIN tb_usuario USING (id_usuario) WHERE nutricionista_responsavel = ? ORDER BY id_paciente DESC",
+    "trazerPorId": "SELECT * FROM tb_paciente INNER JOIN tb_usuario USING (id_usuario) WHERE id_paciente = ?",
+    "trazerPorNomeUsuario": "SELECT * FROM tb_paciente INNER JOIN tb_usuario USING (id_usuario) WHERE nome_usuario = ?",
+    "atualizar": "UPDATE tb_paciente SET peso = ?, altura = ?, queixa = ?, comorbidades = ?, medicacoes = ? WHERE id_paciente = ?;"
+}

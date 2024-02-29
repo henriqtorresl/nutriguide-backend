@@ -1,0 +1,5 @@
+{
+    "trazerTodosComentarios": "SELECT * FROM tb_comentario INNER JOIN tb_usuario USING (id_usuario)",
+    "trazerTodosComentariosByIdPost": "SELECT * FROM tb_comentario INNER JOIN tb_usuario USING (id_usuario) WHERE id_post = ?",
+    "inserir": "INSERT INTO tb_comentario (data_criacao, conteudo, id_post, id_usuario) VALUES (?, ?, ?, ?)"
+}

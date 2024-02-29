@@ -1,0 +1,4 @@
+{
+    "inserir": "INSERT INTO tb_plano_alimentar (id_paciente, nome_plano) VALUES (?, ?)",
+    "trazerPorNome": "SELECT * FROM tb_plano_alimentar WHERE nome_plano = ?"
+}

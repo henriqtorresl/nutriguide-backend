@@ -1,0 +1,4 @@
+{
+    "trazerPorIdNutricionista": "SELECT * FROM tb_avaliacao WHERE id_nutricionista = ?",
+    "inserir": "INSERT INTO tb_avaliacao (avaliacao, nota_nutricionista, id_nutricionista) VALUES (?, ?, ?)"
+}

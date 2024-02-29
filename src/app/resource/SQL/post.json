@@ -1,0 +1,6 @@
+{
+    "trazerTodos": "SELECT * FROM tb_post",
+    "trazerPorIdNutricionista": "SELECT * FROM tb_post where id_nutricionista = ?",
+    "inserir": "INSERT INTO tb_post (conteudo_post, data_criacao, id_nutricionista, link_iframe) VALUES (?, ?, ?, ?)",
+    "trazerNutriPorIdPost": "SELECT * FROM tb_post INNER JOIN tb_nutricionista USING (id_nutricionista) INNER JOIN tb_usuario USING (id_usuario) WHERE id_post = ?"
+}

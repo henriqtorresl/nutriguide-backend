@@ -1,0 +1,5 @@
+
+{
+    "inserir": "INSERT INTO tb_progresso_paciente (id_paciente, data, peso, habitos_alimentares, medidas_corporais, queixa, nivel_atividade_fisica, suplementacao_atual) VALUES (?,?,?,?,?,?,?,?)",
+   "trazerPorIdPaciente": "SELECT * FROM tb_progresso_paciente WHERE id_paciente = ? ORDER BY id_progesso DESC"
+}
