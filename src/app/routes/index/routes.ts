@@ -19,10 +19,9 @@ routes.get('/', async (req, res) => {
     res.send('Bem vindo a API do nutriguide!');
 });
 
-// Responsável pela criação do token:
 const SECRET = 'sdjiodsmadsojqwjieqwaasdbmbadetr';
 
-// rota de login:
+// OK
 routes.post('/login', async (req, res) => {
 
     const { nome, email } = req.body;
@@ -72,7 +71,7 @@ routes.post('/login', async (req, res) => {
 
 });
 
-// Rota protegida -> Trás od dados do usuário através do seu nome:
+// OK
 routes.get('/user/nome', checkToken, async (req, res) => {
 
     const { nome } = req.query;
@@ -88,7 +87,7 @@ routes.get('/user/nome', checkToken, async (req, res) => {
     res.status(200).json(user);
 });
 
-// Middleware jwt que verifica o token:
+// OK
 function checkToken(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -105,6 +104,7 @@ function checkToken(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+// OK
 routes.get('/paciente', async (req, res) => {
     const { responsavel } = req.query;
 
@@ -114,6 +114,7 @@ routes.get('/paciente', async (req, res) => {
     res.status(200).json(pacientes);
 });
 
+// OK
 routes.get('/paciente/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -128,6 +129,7 @@ routes.get('/paciente/:id', async (req, res) => {
 
 });
 
+// OK
 routes.get('/paciente-nome', async (req, res) => {
     const { nome } = req.query;
 
@@ -142,6 +144,7 @@ routes.get('/paciente-nome', async (req, res) => {
 
 });
 
+// OK
 routes.post('/paciente', async (req, res) => {
     const paciente: UsuarioPaciente = req.body;
 
@@ -151,6 +154,7 @@ routes.post('/paciente', async (req, res) => {
     res.status(200).json({ msg: 'Paciente inserido com sucesso!' });
 });
 
+// OK
 routes.put('/paciente/:id', async (req, res) => {
     const paciente: UsuarioPaciente = req.body;
     const { id } = req.params;
@@ -161,7 +165,7 @@ routes.put('/paciente/:id', async (req, res) => {
     res.status(200).json({ msg: 'Paciente editado com sucesso!' });
 });
 
-
+// OK
 routes.get('/nutricionista', async (req, res) => {
     const service = new Service();
     const nutricionista = await service.getAllNutricionistas();
@@ -169,6 +173,7 @@ routes.get('/nutricionista', async (req, res) => {
     res.status(200).json(nutricionista);
 });
 
+// OK
 routes.get('/nutricionista/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -183,6 +188,7 @@ routes.get('/nutricionista/:id', async (req, res) => {
 
 });
 
+// OK
 routes.get('/nutricionista-nome', async (req, res) => {
     const { nome } = req.query;
 
@@ -197,6 +203,7 @@ routes.get('/nutricionista-nome', async (req, res) => {
 
 });
 
+// OK
 routes.get('/nutricionista-filtro', async (req, res) => {
     const { nome, especialidade, regiao } = req.query;
 
@@ -211,6 +218,7 @@ routes.get('/nutricionista-filtro', async (req, res) => {
 
 });
 
+// OK
 routes.get('/progresso-paciente/:idPaciente', async (req, res) => {
     const { idPaciente } = req.params;
 
@@ -225,7 +233,7 @@ routes.get('/progresso-paciente/:idPaciente', async (req, res) => {
 
 });
 
-
+// OK
 routes.post('/progresso-paciente', async (req, res) => {
     const service = new Service();
     const progressoPaciente: ProgressoPaciente = req.body;
@@ -235,6 +243,7 @@ routes.post('/progresso-paciente', async (req, res) => {
     res.json({ msg: 'Progresso do paciente registrado com sucesso!' });
 });
 
+// OK
 routes.get('/refeicao', async (req, res) => {
     const service = new Service();
     const refeicao = await service.getAllRefeicoes();
@@ -242,6 +251,7 @@ routes.get('/refeicao', async (req, res) => {
     res.status(200).json(refeicao);
 });
 
+// OK
 routes.post('/alimento', async (req, res) => {
     const alimento: Alimento = req.body;
 
@@ -251,6 +261,7 @@ routes.post('/alimento', async (req, res) => {
     res.status(200).json({ msg: 'Alimento inserido com sucesso!' });
 });
 
+// OK
 routes.get('/alimento/:idPaciente', async (req, res) => {
     const { idPaciente } = req.params;
 
@@ -264,6 +275,7 @@ routes.get('/alimento/:idPaciente', async (req, res) => {
     }
 });
 
+// OK
 routes.post('/plano-alimentar', async (req, res) => {
     const plano: PlanoAlimentar = req.body;
 
@@ -273,6 +285,7 @@ routes.post('/plano-alimentar', async (req, res) => {
     res.status(200).json({ msg: 'Nome do plano alimentar criado com sucesso!' });
 });
 
+// OK
 routes.get('/plano-alimentar', async (req, res) => {
     const { nome } = req.query;
 
@@ -286,6 +299,7 @@ routes.get('/plano-alimentar', async (req, res) => {
     }
 });
 
+// OK
 routes.get('/avaliacao/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -299,6 +313,7 @@ routes.get('/avaliacao/:id', async (req, res) => {
     }
 });
 
+// OK
 routes.post('/avaliacao', async (req, res) => {
     const avaliacao: Avaliacao = req.body;
 
@@ -308,6 +323,7 @@ routes.post('/avaliacao', async (req, res) => {
     res.status(200).json({ msg: 'Avaliação cadastrada no sistema!' });
 });
 
+// OK
 routes.get('/post', async (req, res) => {
     const service = new Service();
     const posts = await service.getAllPost();
@@ -319,6 +335,7 @@ routes.get('/post', async (req, res) => {
     }
 });
 
+// OK
 routes.get('/post/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -332,6 +349,7 @@ routes.get('/post/:id', async (req, res) => {
     }
 });
 
+// OK
 routes.post('/post', async (req, res) => {
     const post: Post = req.body;
 
@@ -341,6 +359,7 @@ routes.post('/post', async (req, res) => {
     res.status(200).json({ msg: 'Postagem concluída!' });
 });
 
+// OK
 routes.get('/comentario', async (req, res) => {
     const service = new Service();
     const comentarios = await service.getAllComentario();
@@ -352,6 +371,7 @@ routes.get('/comentario', async (req, res) => {
     }
 });
 
+// OK
 routes.get('/comentario/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -365,6 +385,7 @@ routes.get('/comentario/:id', async (req, res) => {
     }
 });
 
+// OK
 routes.post('/comentario', async (req, res) => {
     const comentario: Comentario = req.body;
 
@@ -388,7 +409,7 @@ const transport = nodemailer.createTransport({
     }
 });
 
-// email para notificar sobre cadastro
+// OK
 routes.post('/email-cadastro', async (req, res) => {
     const { emailPaciente, nome  } = req.body;
 
@@ -411,7 +432,7 @@ routes.post('/email-cadastro', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// email para notificar sobre o plano alimentar
+// OK
 routes.post('/email-plano-alimentar', async (req, res) => {
     const { emailPaciente, nome } = req.body;
 
@@ -433,7 +454,7 @@ routes.post('/email-plano-alimentar', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// email para enviar uma mensagem para o nutricionista
+// OK
 routes.post('/email-mensagem-nutricionista', async (req, res) => {
     const { emailPaciente, nome, title, html, emailNutri } = req.body;
 
@@ -443,7 +464,7 @@ routes.post('/email-mensagem-nutricionista', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// notificar o nutricionista, por email de que comentaram em seu post
+// OK
 routes.post('/email-notificar-comentario', async (req, res) => {
     const usuarioComentario: UsuarioComentario = req.body;
 
@@ -468,7 +489,7 @@ routes.post('/email-notificar-comentario', async (req, res) => {
     res.json({ msg: 'O nutricionista foi notificado sobre o comentário!' });
 });
 
-// notificar pacientes, por email de que seu nutricionista fez um post
+// OK
 routes.post('/email-notificar-pacientes', async (req, res) => {
     const { nome } = req.body;
 
