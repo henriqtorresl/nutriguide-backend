@@ -1,9 +1,15 @@
+import RefeicaoRepository from "../database/refeicaoRepository";
+
 export default class RefeicaoService {
 
-    private repository: any;
+    private repository: RefeicaoRepository;
 
     constructor() {
-        // instancia o repository
+        this.repository = new RefeicaoRepository();
+    }
+
+    public async getAllRefeicoes() {
+        return await this.repository.getAllRefeicoes();
     }
 
 }

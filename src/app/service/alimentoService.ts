@@ -1,9 +1,20 @@
+import AlimentoRepository from "../database/alimentoRepository";
+import Alimento from "../models/Alimento";
+
 export default class AlimentoService {
 
-    private repository: any;
+    private repository: AlimentoRepository;
 
     constructor() {
-        // instancia o repository
+        this.repository = new AlimentoRepository();
+    }
+
+    public async insertAlimento(alimento: Alimento) {
+        await this.repository.insertAlimento(alimento);
+    }
+
+    public async getAlimentasByIdPaciente(idPaciente: string) {
+        return await this.repository.getAlimentasByIdPaciente(idPaciente);
     }
 
 }

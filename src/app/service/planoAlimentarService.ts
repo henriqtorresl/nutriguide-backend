@@ -1,9 +1,20 @@
+import PlanoAlimentarRepository from "../database/planoAlimentarRepository";
+import PlanoAlimentar from "../models/PlanoAlimentar";
+
 export default class PlanoAlimentarService {
 
-    private repository: any;
+    private repository: PlanoAlimentarRepository;
 
     constructor() {
-        // instancia o repository
+        this.repository = new PlanoAlimentarRepository();
+    }
+
+    public async insertPlanoAlimentar(plano: PlanoAlimentar) {
+        await this.repository.insertPlanoAlimentar(plano);
+    }
+
+    public async getPlanoAlimentarByName(nome: string) {
+        return await this.repository.getPlanoAlimentarByName(nome);
     }
 
 }
