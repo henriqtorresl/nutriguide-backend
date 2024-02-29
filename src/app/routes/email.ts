@@ -21,7 +21,6 @@ const transport = nodemailer.createTransport({
 
 const routesEmail = Router();
 
-// email para notificar sobre cadastro
 routesEmail.post('/email-cadastro', async (req, res) => {
     const { emailPaciente, nome  } = req.body;
 
@@ -44,7 +43,6 @@ routesEmail.post('/email-cadastro', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// email para notificar sobre o plano alimentar
 routesEmail.post('/email-plano-alimentar', async (req, res) => {
     const { emailPaciente, nome } = req.body;
 
@@ -66,7 +64,6 @@ routesEmail.post('/email-plano-alimentar', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// email para enviar uma mensagem para o nutricionista
 routesEmail.post('/email-mensagem-nutricionista', async (req, res) => {
     const { emailPaciente, nome, title, html, emailNutri } = req.body;
 
@@ -76,7 +73,6 @@ routesEmail.post('/email-mensagem-nutricionista', async (req, res) => {
     res.json({ msg: 'Email enviado com sucesso!' });
 });
 
-// notificar o nutricionista, por email de que comentaram em seu post
 routesEmail.post('/email-notificar-comentario', async (req, res) => {
     const usuarioComentario: UsuarioComentario = req.body;
 
@@ -102,7 +98,6 @@ routesEmail.post('/email-notificar-comentario', async (req, res) => {
     res.json({ msg: 'O nutricionista foi notificado sobre o comentário!' });
 });
 
-// notificar pacientes, por email de que seu nutricionista fez um post
 routesEmail.post('/email-notificar-pacientes', async (req, res) => {
     const { nome } = req.body;
 
