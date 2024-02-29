@@ -12,7 +12,7 @@ export default class UsuarioRepository {
     }
 
 
-    public findUserByName(nome: string): Promise<Usuario | undefined> {
+    public async findUserByName(nome: string): Promise<Usuario | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<Usuario[]>(usuario.findByName, [nome], (err, result) => {
                 if (err) {
@@ -28,7 +28,7 @@ export default class UsuarioRepository {
         });
     }
 
-    public findById(id: string): Promise<Usuario | undefined> {
+    public async findById(id: string): Promise<Usuario | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<Usuario[]>(usuario.findById, [id], (err, result) => {
                 if (err) {
@@ -44,7 +44,7 @@ export default class UsuarioRepository {
         });
     }
 
-    public insertUserPaciente(user: Usuario): Promise<Usuario | undefined> {
+    public async insertUserPaciente(user: Usuario): Promise<Usuario | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<Usuario[]>(
                 usuario.inserirPaciente, 
@@ -61,7 +61,7 @@ export default class UsuarioRepository {
         });
     }
 
-    public trazUltimoIdInserido(): Promise<Usuario | undefined> {
+    public async trazUltimoIdInserido(): Promise<Usuario | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<Usuario[]>(
                 usuario.trazUltimoIdInserido,  

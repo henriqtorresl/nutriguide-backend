@@ -12,7 +12,7 @@ export default class PacienteRepository {
     }
 
 
-    public insertPaciente(userPaciente: UsuarioPaciente, idUsuario: number): Promise<UsuarioPaciente | undefined> {
+    public async insertPaciente(userPaciente: UsuarioPaciente, idUsuario: number): Promise<UsuarioPaciente | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioPaciente[]>(
                 paciente.inserir, 
@@ -31,7 +31,7 @@ export default class PacienteRepository {
         });
     }
 
-    public editPaciente(userPaciente: UsuarioPaciente, idPaciente: string): Promise<UsuarioPaciente | undefined> {
+    public async editPaciente(userPaciente: UsuarioPaciente, idPaciente: string): Promise<UsuarioPaciente | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioPaciente[]>(
                 paciente.atualizar, 
@@ -50,7 +50,7 @@ export default class PacienteRepository {
         });
     }
 
-    getAllPacientesByNutriName(responsavel: string): Promise<UsuarioPaciente[] | undefined> {
+    public async getAllPacientesByNutriName(responsavel: string): Promise<UsuarioPaciente[] | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioPaciente[]>(
                 paciente.trazerTodos,
@@ -67,7 +67,7 @@ export default class PacienteRepository {
         });
     }
 
-    getOnePaciente(idPaciente: string): Promise<UsuarioPaciente | undefined> {
+    public async getOnePaciente(idPaciente: string): Promise<UsuarioPaciente | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioPaciente[]>(
                 paciente.trazerPorId,
@@ -84,7 +84,7 @@ export default class PacienteRepository {
         });
     }
 
-    getOnePacienteByNomeUser(nome: string): Promise<UsuarioPaciente | undefined> {
+    public async getOnePacienteByNomeUser(nome: string): Promise<UsuarioPaciente | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioPaciente[]>(
                 paciente.trazerPorNomeUsuario,

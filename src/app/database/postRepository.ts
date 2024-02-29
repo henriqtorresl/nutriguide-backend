@@ -11,7 +11,7 @@ export default class PostRepository {
         this.database = mysql.createPool(urlDb);
     }
 
-    getAllPost(): Promise<Post[] | undefined> {
+    public async getAllPost(): Promise<Post[] | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<Post[]>(
                 post.trazerTodos,

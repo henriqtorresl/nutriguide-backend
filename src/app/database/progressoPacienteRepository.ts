@@ -11,7 +11,7 @@ export default class ProgressoPacienteRepository {
         this.database = mysql.createPool(urlDb);
     }
 
-    getProgressoByIdPaciente(idPaciente: string): Promise<ProgressoPaciente[] | undefined> {
+    public async getProgressoByIdPaciente(idPaciente: string): Promise<ProgressoPaciente[] | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<ProgressoPaciente[]>(
                 progressoPaciente.trazerPorIdPaciente,

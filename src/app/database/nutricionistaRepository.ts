@@ -11,7 +11,7 @@ export default class NutricionistaRepository {
         this.database = mysql.createPool(urlDb);
     }
 
-    getAllNutricionistas(): Promise<UsuarioNutricionista[] | undefined> {
+    public async getAllNutricionistas(): Promise<UsuarioNutricionista[] | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioNutricionista[]>(
                 nutricionista.trazerTodos,  
@@ -27,7 +27,7 @@ export default class NutricionistaRepository {
         });
     }
 
-    getOneNutricionista(idNutricionista: string): Promise<UsuarioNutricionista | undefined> {
+    public async getOneNutricionista(idNutricionista: string): Promise<UsuarioNutricionista | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioNutricionista[]>(
                 nutricionista.trazerPorId,
@@ -44,7 +44,7 @@ export default class NutricionistaRepository {
         });
     }
 
-    getOneNutricionistaByNomeUser(nome: string): Promise<UsuarioNutricionista | undefined> {
+    public async getOneNutricionistaByNomeUser(nome: string): Promise<UsuarioNutricionista | undefined> {
         return new Promise((resolve, reject) => {
             this.database.query<UsuarioNutricionista[]>(
                 nutricionista.trazerPorNomeUsuario,
@@ -61,7 +61,7 @@ export default class NutricionistaRepository {
         });
     }
 
-    getAllNutricionistasFiltered(nome: string, especialidade: string, regiao: string): Promise<UsuarioNutricionista[] | undefined> {
+    public async getAllNutricionistasFiltered(nome: string, especialidade: string, regiao: string): Promise<UsuarioNutricionista[] | undefined> {
         let query: string = nutricionista.trazerFiltrados;
 
         if (nome !== '') {
