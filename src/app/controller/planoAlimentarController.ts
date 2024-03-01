@@ -11,6 +11,25 @@ export default class PlanoAlimentarController {
     }
 
     public async post(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Plano Alimentar Resource']
+        #swagger.description = 'Serviço que permite que um nutricionista crie um novo plano alimentar para um paciente'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+        #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Plano Alimentar',
+            required: true,
+            schema: {
+                id_paciente: "number",
+                nome_plano: "string"
+            }
+        }
+
+        */
+
         const plano: PlanoAlimentar = req.body;
 
         await PlanoAlimentarController.service.insertPlanoAlimentar(plano);
@@ -19,6 +38,16 @@ export default class PlanoAlimentarController {
     }
 
     public async getAll(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Plano Alimentar Resource']
+        #swagger.description = 'Serviço que lista o plano alimentar de um paciente a partir de seu nome'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { nome } = req.query;
 
         const plano = await PlanoAlimentarController.service.getPlanoAlimentarByName(String(nome));

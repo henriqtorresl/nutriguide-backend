@@ -1,0 +1,1118 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Nutriguide API",
+    "description": "Documentação dos endpoints do backend do projeto Nutriguide",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/alimento": {
+      "post": {
+        "tags": [
+          "Alimento Resource"
+        ],
+        "description": "Insere um tipo de alimento",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Alimento",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_plano": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "id_refeicao": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "nome_alimento": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "quantidade_grama": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "qnt_carboidrato": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "qnt_proteina": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "qnt_gordura": {
+                  "type": "string",
+                  "example": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/alimento/{idPaciente}": {
+      "get": {
+        "tags": [
+          "Alimento Resource"
+        ],
+        "description": "Trás os alimentos cadastrados para um paciente, a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idPaciente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Auth Resource"
+        ],
+        "description": "Faz o login na aplicação e gera um token jwt",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/nome": {
+      "get": {
+        "tags": [
+          "Auth Resource"
+        ],
+        "description": "Trás os dados pessoais do usuário a partir do seu nome",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/avaliacao/{idNutricionista}": {
+      "get": {
+        "tags": [
+          "Avaliação Resource"
+        ],
+        "description": "Lista as avaliações de um nutricionista a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idNutricionista",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/avaliacao": {
+      "post": {
+        "tags": [
+          "Avaliação Resource"
+        ],
+        "description": "Cria uma avaliação para um nutricionista",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comentario": {
+      "get": {
+        "tags": [
+          "Comentário Resource"
+        ],
+        "description": "Lista todos os comentários existentes",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comentário Resource"
+        ],
+        "description": "Cria um comentário para um post de um nutricionista",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comentario/{idPost}": {
+      "get": {
+        "tags": [
+          "Comentário Resource"
+        ],
+        "description": "Lista todos os comentários de um post através de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idPost",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/email-cadastro": {
+      "post": {
+        "tags": [
+          "Email Resource"
+        ],
+        "description": "Serviço que envia um e-mail para um paciente para notifica-lo de que ele foi cadastrado no sistema",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "emailPaciente": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/email-plano-alimentar": {
+      "post": {
+        "tags": [
+          "Email Resource"
+        ],
+        "description": "Serviço que envia um email para notificar o paciente de que ele possui um plano alimentar disponível para visualização e download do PDF",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "emailPaciente": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/email-mensagem-nutricionista": {
+      "post": {
+        "tags": [
+          "Email Resource"
+        ],
+        "description": "Serviço que permite o envio de uma mensagem por e-mail para um nutricionista",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "emailPaciente": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                },
+                "title": {
+                  "example": "any"
+                },
+                "html": {
+                  "example": "any"
+                },
+                "emailNutri": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/email-notificar-comentario": {
+      "post": {
+        "tags": [
+          "Email Resource"
+        ],
+        "description": "Serviço que notifica o nustricionista de que ele possui um novo comentário em algum de seus posts na sua comunidade",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_post": {
+                  "example": "any"
+                },
+                "nome_usuario": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/email-notificar-pacientes": {
+      "post": {
+        "tags": [
+          "Email Resource"
+        ],
+        "description": "Serviço que notifica todos os pacientes de um nutricionista de que ele fez uma nova postagem em sua aba de comunidade",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/nutricionista": {
+      "get": {
+        "tags": [
+          "Nutricionista Resource"
+        ],
+        "description": "Lista todos os nutricionistas que estão cadastrados no sistema",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/nutricionista/{id}": {
+      "get": {
+        "tags": [
+          "Nutricionista Resource"
+        ],
+        "description": "Lista um nutricionista a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/nutricionista-nome": {
+      "get": {
+        "tags": [
+          "Nutricionista Resource"
+        ],
+        "description": "Lista os dados de um nutricionista a partir de seu nome",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/nutricionista-filtro": {
+      "get": {
+        "tags": [
+          "Nutricionista Resource"
+        ],
+        "description": "Serviço que lista os nutricionistas a partir de um filtro, que pode receber os seguintes parâmetros: especialidade, nome ou região",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "especialidade",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "regiao",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/paciente": {
+      "get": {
+        "tags": [
+          "Paciente Resource"
+        ],
+        "description": "Lista todos os pacientes de um nutricionista a partir do nome do nutricionista reponsável",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "responsavel",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Paciente Resource"
+        ],
+        "description": "Serviço que permite realizar o cadastro de um novo paciente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Usuário Paciente",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cpf": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "nome_usuario": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "telefone": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "Date"
+                },
+                "tipo_usuario": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "peso": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "altura": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "queixa": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "comorbidades": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "medicacoes": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "nutricionista_responsavel": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/paciente/{id}": {
+      "get": {
+        "tags": [
+          "Paciente Resource"
+        ],
+        "description": "Lista um paciente a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Paciente Resource"
+        ],
+        "description": "Serviço que permite editar os dados de um paciente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Usuário Paciente",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_usuario": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "nome_usuario": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "telefone": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "Date"
+                },
+                "tipo_usuario": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "id_paciente": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "peso": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "altura": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "queixa": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "comorbidades": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "medicacoes": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "nutricionista_responsavel": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/paciente-nome": {
+      "get": {
+        "tags": [
+          "Paciente Resource"
+        ],
+        "description": "Lista os dados de um paciente a partir de seu nome",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/plano-alimentar": {
+      "post": {
+        "tags": [
+          "Plano Alimentar Resource"
+        ],
+        "description": "Serviço que permite que um nutricionista crie um novo plano alimentar para um paciente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Plano Alimentar",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_paciente": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "nome_plano": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Plano Alimentar Resource"
+        ],
+        "description": "Serviço que lista o plano alimentar de um paciente a partir de seu nome",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/post": {
+      "get": {
+        "tags": [
+          "Post Resource"
+        ],
+        "description": "Lista todos os posts que ja foram feitos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Post Resource"
+        ],
+        "description": "Serviço que permite que um nutricionista crie uma nova  ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Postagem",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "conteudo_post": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "data_criacao": {
+                  "type": "string",
+                  "example": "Date"
+                },
+                "id_nutricionista": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "link_iframe": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/{idNutricionista}": {
+      "get": {
+        "tags": [
+          "Post Resource"
+        ],
+        "description": "Lista todos os posts de um nutricionista a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idNutricionista",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/progresso-paciente/{idPaciente}": {
+      "get": {
+        "tags": [
+          "Progresso Paciente Resource"
+        ],
+        "description": "Lista o progresso de um paciente a partir de seu id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idPaciente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/progresso-paciente": {
+      "post": {
+        "tags": [
+          "Progresso Paciente Resource"
+        ],
+        "description": "Serviço que permite que um nutricionista registre o progresso de um de seus pacientes",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/refeicao": {
+      "get": {
+        "tags": [
+          "Refeição Resource"
+        ],
+        "description": "Lista todos os tipos de refeição que temos cadastrados em nosso sistema",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

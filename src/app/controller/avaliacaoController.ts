@@ -11,9 +11,19 @@ export default class AvaliacaoController {
     }
 
     public async getById(req: Request, res: Response) {
-        const { id } = req.params;
+        /*
+        Configurações do Swagger:
 
-        const avaliacao = await AvaliacaoController.service.getAvaliacoesById(id);
+        #swagger.tags = ['Avaliação Resource']
+        #swagger.description = 'Lista as avaliações de um nutricionista a partir de seu id'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
+        const { idNutricionista } = req.params;
+
+        const avaliacao = await AvaliacaoController.service.getAvaliacoesById(idNutricionista);
     
         if (avaliacao !== undefined && avaliacao!.length !== 0) {
             res.status(200).json(avaliacao);
@@ -23,6 +33,17 @@ export default class AvaliacaoController {
     }
 
     public async post(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Avaliação Resource']
+        #swagger.description = 'Cria uma avaliação para um nutricionista'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
+
         const avaliacao: Avaliacao = req.body;
 
         await AvaliacaoController.service.insertAvaliacao(avaliacao);

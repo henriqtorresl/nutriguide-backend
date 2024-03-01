@@ -10,12 +10,32 @@ export default class NutricionistaController {
     }
 
     public async getAll(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Nutricionista Resource']
+        #swagger.description = 'Lista todos os nutricionistas que estão cadastrados no sistema'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const nutricionista = await NutricionistaController.service.getAllNutricionistas();
     
         res.status(200).json(nutricionista);
     } 
 
     public async getOne(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Nutricionista Resource']
+        #swagger.description = 'Lista um nutricionista a partir de seu id'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { id } = req.params;
 
         const nutricionista = await NutricionistaController.service.getOneNutricionista(id);
@@ -28,6 +48,16 @@ export default class NutricionistaController {
     }
 
     public async getNutriByNomeUser(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Nutricionista Resource']
+        #swagger.description = 'Lista os dados de um nutricionista a partir de seu nome'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { nome } = req.query;
 
         const nutricionista = await NutricionistaController.service.getOneNutricionistaByNomeUser(String(nome));
@@ -40,6 +70,16 @@ export default class NutricionistaController {
     }
 
     public async nutricionistaFiltro(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Nutricionista Resource']
+        #swagger.description = 'Serviço que lista os nutricionistas a partir de um filtro, que pode receber os seguintes parâmetros: especialidade, nome ou região'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { nome, especialidade, regiao } = req.query;
 
         const nutricionistas = await NutricionistaController.service.getAllNutricionistasFiltered(String(nome), String(especialidade), String(regiao));

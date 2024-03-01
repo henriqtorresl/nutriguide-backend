@@ -6,7 +6,7 @@ const controller = new PostController();
 
 routesPost.get('/post', controller.getAll);
 
-routesPost.get('/post/:id', controller.getOne);
+routesPost.get('/post/:idNutricionista', controller.getOne);
 
 routesPost.post('/post', controller.post);
 

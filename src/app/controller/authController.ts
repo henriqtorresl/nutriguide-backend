@@ -15,6 +15,16 @@ export default class AuthController {
     }
 
     public async login(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Auth Resource']
+        #swagger.description = 'Faz o login na aplicação e gera um token jwt'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
         const SECRET = process.env.SECRET;
 
         const { nome, email } = req.body;
@@ -62,6 +72,16 @@ export default class AuthController {
     }
 
     public async getUserByName(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Auth Resource']
+        #swagger.description = 'Trás os dados pessoais do usuário a partir do seu nome'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
         const { nome } = req.query;
 
         const user: Usuario | undefined = await AuthController.service.findUserByName(String(nome));

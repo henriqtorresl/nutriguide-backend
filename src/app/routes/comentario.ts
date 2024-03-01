@@ -6,7 +6,7 @@ const controller = new ComentarioController();
 
 routesComentario.get('/comentario', controller.getAll);
 
-routesComentario.get('/comentario/:id', controller.getOne);
+routesComentario.get('/comentario/:idPost', controller.getOne);
 
 routesComentario.post('/comentario', controller.post);
 

@@ -11,6 +11,16 @@ export default class ComentarioController {
     }
 
     public async getAll(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Comentário Resource']
+        #swagger.description = 'Lista todos os comentários existentes'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
         const comentarios = await ComentarioController.service.getAllComentario();
     
         if (comentarios !== undefined && comentarios!.length !== 0) {
@@ -21,9 +31,19 @@ export default class ComentarioController {
     }
 
     public async getOne(req: Request, res: Response) {
-        const { id } = req.params;
+        /*
+        Configurações do Swagger:
 
-        const comentario = await ComentarioController.service.getAllComentarioByIdPost(id);
+        #swagger.tags = ['Comentário Resource']
+        #swagger.description = 'Lista todos os comentários de um post através de seu id'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
+        const { idPost } = req.params;
+
+        const comentario = await ComentarioController.service.getAllComentarioByIdPost(idPost);
     
         if (comentario !== undefined && comentario!.length !== 0) {
             res.status(200).json(comentario);
@@ -33,6 +53,16 @@ export default class ComentarioController {
     }
 
     public async post(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Comentário Resource']
+        #swagger.description = 'Cria um comentário para um post de um nutricionista'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
         const comentario: Comentario = req.body;
 
         await ComentarioController.service.insertComentario(comentario);

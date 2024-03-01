@@ -21,6 +21,16 @@ export default class EmailController {
     }
 
     public async postEmailCadastro(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Email Resource']
+        #swagger.description = 'Serviço que envia um e-mail para um paciente para notifica-lo de que ele foi cadastrado no sistema'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+
         const { emailPaciente, nome } = req.body;
 
         const title: string = 'Você foi cadastrado no sistema';
@@ -54,6 +64,16 @@ export default class EmailController {
     }
 
     public async postEmailPlanoAlimentar(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Email Resource']
+        #swagger.description = 'Serviço que envia um email para notificar o paciente de que ele possui um plano alimentar disponível para visualização e download do PDF'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { emailPaciente, nome } = req.body;
 
         const title: string = 'Você possui um plano alimentar disponível para download!';
@@ -87,6 +107,16 @@ export default class EmailController {
     }
 
     public async postMensagemNutri(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Email Resource']
+        #swagger.description = 'Serviço que permite o envio de uma mensagem por e-mail para um nutricionista'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { emailPaciente, nome, title, html, emailNutri } = req.body;
 
         const transport = nodemailer.createTransport({
@@ -108,6 +138,16 @@ export default class EmailController {
     }
 
     public async postNotificarComentario(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Email Resource']
+        #swagger.description = 'Serviço que notifica o nustricionista de que ele possui um novo comentário em algum de seus posts na sua comunidade'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const usuarioComentario: UsuarioComentario = req.body;
 
         const nutricionista = await EmailController.postService.getNutriByIdPost(usuarioComentario.id_post.toString());
@@ -143,12 +183,22 @@ export default class EmailController {
     }
 
     public async postNotificarPacientes(req: Request, res: Response) {
+        /*
+        Configurações do Swagger:
+
+        #swagger.tags = ['Email Resource']
+        #swagger.description = 'Serviço que notifica todos os pacientes de um nutricionista de que ele fez uma nova postagem em sua aba de comunidade'
+        #swagger.produces = ['application/json']
+        #swagger.consumes = ['application/json']
+
+        */
+        
         const { nome } = req.body;
 
         const nutricionista = await EmailController.nutricionistaService.getOneNutricionistaByNomeUser(nome);
         const pacientes = await EmailController.pacienteService.getAllPacientesByNutriName(nutricionista!.nome_usuario.toString());
 
-        const title: string = `Novo comentário na sua publicação!`;
+        const title: string = `Seu nutricionista fez uma nova postagem!`;
         const html: string =
             `
     <div>
