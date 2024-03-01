@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import EmailService from "../service/emailService";
-import nodemailer, { Transporter } from "nodemailer";
-import SMTPTransport from "nodemailer/lib/smtp-transport";
+import nodemailer from "nodemailer";
 import PostService from "../service/postService";
 import UsuarioComentario from "../models/UsuarioComentario";
 import NutricionistaService from "../service/nutricionistaService";
@@ -13,30 +12,12 @@ export default class EmailController {
     private static postService: PostService;
     private static nutricionistaService: NutricionistaService;
     private static pacienteService: PacienteService;
-    private transport: Transporter<SMTPTransport.SentMessageInfo>;
 
     constructor() {
         EmailController.service = new EmailService();
         EmailController.postService = new PostService();
         EmailController.nutricionistaService = new NutricionistaService();
         EmailController.pacienteService = new PacienteService()
-
-        this.transport = this.createTransport();
-    }
-
-    private createTransport(): Transporter<SMTPTransport.SentMessageInfo> {
-        return nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: 'nutriguide018@gmail.com',
-                pass: 'ogzi xssf wkma fhiu'
-            },
-            tls: {
-                rejectUnauthorized: false,
-            }
-        });
     }
 
     public async postEmailCadastro(req: Request, res: Response) {
@@ -54,8 +35,20 @@ export default class EmailController {
             <h2>Muito obrigado!</h2>
         </div>
         `
+        const transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'nutriguide018@gmail.com',
+                pass: 'ogzi xssf wkma fhiu'
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
 
-        await EmailController.service.enviarEmail(this.transport, title, html, nome, emailPaciente);
+        await EmailController.service.enviarEmail(transport, title, html, nome, emailPaciente);
 
         res.json({ msg: 'Email enviado com sucesso!' });
     }
@@ -75,7 +68,20 @@ export default class EmailController {
     </div>
     `
 
-        await EmailController.service.enviarEmail(this.transport, title, html, nome, emailPaciente);
+        const transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'nutriguide018@gmail.com',
+                pass: 'ogzi xssf wkma fhiu'
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
+        await EmailController.service.enviarEmail(transport, title, html, nome, emailPaciente);
 
         res.json({ msg: 'Email enviado com sucesso!' });
     }
@@ -83,7 +89,20 @@ export default class EmailController {
     public async postMensagemNutri(req: Request, res: Response) {
         const { emailPaciente, nome, title, html, emailNutri } = req.body;
 
-        await EmailController.service.enviarEmail(this.transport, title, html, nome, emailNutri, emailPaciente);
+        const transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'nutriguide018@gmail.com',
+                pass: 'ogzi xssf wkma fhiu'
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
+        await EmailController.service.enviarEmail(transport, title, html, nome, emailNutri, emailPaciente);
 
         res.json({ msg: 'Email enviado com sucesso!' });
     }
@@ -105,7 +124,20 @@ export default class EmailController {
         </div>
         `
 
-        await EmailController.service.enviarEmail(this.transport, title, html, usuarioComentario.nome_usuario, nutricionista.email, usuarioComentario.email);
+        const transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'nutriguide018@gmail.com',
+                pass: 'ogzi xssf wkma fhiu'
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
+        await EmailController.service.enviarEmail(transport, title, html, usuarioComentario.nome_usuario, nutricionista.email, usuarioComentario.email);
 
         res.json({ msg: 'O nutricionista foi notificado sobre o comentário!' });
     }
@@ -127,9 +159,22 @@ export default class EmailController {
     </div>
     `
 
+        const transport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'nutriguide018@gmail.com',
+                pass: 'ogzi xssf wkma fhiu'
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
         const emails: string[] = pacientes!.map((p) => p.email);
 
-        await EmailController.service.enviarEmail(this.transport, title, html, nutricionista!.nome_usuario, emails);
+        await EmailController.service.enviarEmail(transport, title, html, nutricionista!.nome_usuario, emails);
 
         res.json({ msg: 'Seus pacientes foram notificados sobre sua nova postagem!' });
     }
