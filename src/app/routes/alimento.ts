@@ -1,29 +1,11 @@
 import { Router } from "express";
-import Alimento from "../models/Alimento";
-import AlimentoService from "../service/alimentoService";
+import AlimentoController from "../controller/alimentoController";
 
 const routesAlimento = Router();
+const controller = new AlimentoController();
 
-routesAlimento.post('/alimento', async (req, res) => {
-    const alimento: Alimento = req.body;
+routesAlimento.post('/alimento', controller.post);
 
-    const service = new AlimentoService();
-    await service.insertAlimento(alimento);
-
-    res.status(200).json({ msg: 'Alimento inserido com sucesso!' });
-});
-
-routesAlimento.get('/alimento/:idPaciente', async (req, res) => {
-    const { idPaciente } = req.params;
-
-    const service = new AlimentoService();
-    const alimentos = await service.getAlimentasByIdPaciente(idPaciente);
-
-    if (alimentos !== undefined && alimentos!.length !== 0) {
-        res.status(200).json(alimentos);
-    } else {
-        res.status(404).json({ msg: 'Não foi encontrado nenhum alimento registrado para o paciente!' })
-    }
-});
+routesAlimento.get('/alimento/:idPaciente', controller.getByIdPaciente);
 
 export default routesAlimento;

@@ -17,12 +17,8 @@ export default class UsuarioRepository {
             this.database.query<Usuario[]>(usuario.findByName, [nome], (err, result) => {
                 if (err) {
                     reject(err);
-
-                    this.database.end();
                 } else {
                     resolve(result?.[0]);
-
-                    this.database.end();
                 }
             });
         });
@@ -33,12 +29,8 @@ export default class UsuarioRepository {
             this.database.query<Usuario[]>(usuario.findById, [id], (err, result) => {
                 if (err) {
                     reject(err);
-
-                    this.database.end();
                 } else {
                     resolve(result?.[0]);
-
-                    this.database.end();
                 }
             });
         });
@@ -52,8 +44,6 @@ export default class UsuarioRepository {
                 (err, result) => {
                     if (err) {
                         reject(err);
-
-                        this.database.end();
                     } else {
                         resolve(result?.[0]);
                     }
@@ -68,8 +58,6 @@ export default class UsuarioRepository {
                 (err, result) => {
                     if (err) {
                         reject(err);
-
-                        this.database.end();
                     } else {
                         resolve(result?.[0]);
                     }

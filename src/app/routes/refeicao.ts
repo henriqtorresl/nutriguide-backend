@@ -1,13 +1,9 @@
 import { Router } from "express";
-import RefeicaoService from "../service/refeicaoService";
+import RefeicaoController from "../controller/refeicaoController";
 
 const routesRefeicao = Router();
+const controller = new RefeicaoController();
 
-routesRefeicao.get('/refeicao', async (req, res) => {
-    const service = new RefeicaoService();
-    const refeicao = await service.getAllRefeicoes();
-
-    res.status(200).json(refeicao);
-});
+routesRefeicao.get('/refeicao', controller.getAll);
 
 export default routesRefeicao;

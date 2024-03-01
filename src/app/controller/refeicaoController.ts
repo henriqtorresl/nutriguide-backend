@@ -1,11 +1,18 @@
 import { Request, Response } from "express";
+import RefeicaoService from "../service/refeicaoService";
 
 export default class RefeicaoController {
 
-    private service: any;
+    private static service: RefeicaoService;
 
     constructor() {
-        // instancia o service
+        RefeicaoController.service = new RefeicaoService();
+    }
+
+    public async getAll(req: Request, res: Response) {
+        const refeicao = await RefeicaoController.service.getAllRefeicoes();
+    
+        res.status(200).json(refeicao);
     }
 
 }
