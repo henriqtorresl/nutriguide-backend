@@ -21,11 +21,11 @@ export default class PacienteRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
 
-                        this.database.end();
+                         
                     }
             });
         });
@@ -40,11 +40,11 @@ export default class PacienteRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
 
-                        this.database.end();
+                         
                     }
             });
         });
@@ -59,7 +59,7 @@ export default class PacienteRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -76,7 +76,7 @@ export default class PacienteRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
                     }
@@ -93,7 +93,7 @@ export default class PacienteRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
                     }

@@ -20,7 +20,7 @@ export default class ComentarioRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -37,7 +37,7 @@ export default class ComentarioRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -56,11 +56,11 @@ export default class ComentarioRepository {
 
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
 
-                        this.database.end();
+                         
                     }
             });
         });

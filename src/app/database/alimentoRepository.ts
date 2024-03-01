@@ -21,11 +21,11 @@ export default class AlimentoRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
 
-                        this.database.end();
+                         
                     }
             });
         });
@@ -40,7 +40,7 @@ export default class AlimentoRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }

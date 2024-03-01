@@ -19,7 +19,7 @@ export default class PostRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -36,7 +36,7 @@ export default class PostRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -55,11 +55,11 @@ export default class PostRepository {
 
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
 
-                        this.database.end();
+                         
                     }
             });
         });
@@ -74,7 +74,7 @@ export default class PostRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
                     }

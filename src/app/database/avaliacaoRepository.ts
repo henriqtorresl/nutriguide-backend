@@ -20,7 +20,7 @@ export default class AvaliacaoRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -37,11 +37,11 @@ export default class AvaliacaoRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
 
-                        this.database.end();
+                         
                     }
             });
         });

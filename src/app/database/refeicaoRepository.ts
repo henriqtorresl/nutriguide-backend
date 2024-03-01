@@ -19,7 +19,7 @@ export default class RefeicaoRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }

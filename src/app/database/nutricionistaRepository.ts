@@ -19,7 +19,7 @@ export default class NutricionistaRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
@@ -36,7 +36,7 @@ export default class NutricionistaRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
                     }
@@ -53,7 +53,7 @@ export default class NutricionistaRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result?.[0]);
                     }
@@ -81,7 +81,7 @@ export default class NutricionistaRepository {
                     if (err) {
                         reject(err);
 
-                        this.database.end();
+                         
                     } else {
                         resolve(result);
                     }
