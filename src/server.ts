@@ -1,10 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './app/routes/routes';
+import routes from './app/routes/index/routes';
 
 const app = express();
 
-// Configurações da API
 app.use(cors());
 app.use(express.json());
 
