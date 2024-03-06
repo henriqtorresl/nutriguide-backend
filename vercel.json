@@ -1,15 +1,19 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "./dist/server.js",
-            "use": "@now/node"
-        }
+      {
+        "src": "./dist/server.js",
+        "use": "@now/node"
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/dist/server.js"
-        }
+      {
+        "src": "/swagger-ui/(.*)",
+        "dest": "/node_modules/swagger-ui-dist/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/dist/server.js"
+      }
     ]
-}
+  }
