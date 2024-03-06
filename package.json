@@ -31,6 +31,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.5",
     "nodemailer": "^6.9.7",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "vercel": "^33.5.3"
   }
 }
