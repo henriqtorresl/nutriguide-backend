@@ -28,6 +28,8 @@ function checkTokenMiddleware(req: Request, res: Response, next: NextFunction) {
 
 routesAuth.post('/login', controller.login);
 
+routesAuth.post('/cadastro', controller.cadastroNutri);
+
 routesAuth.get('/user/nome', checkTokenMiddleware, controller.getUserByName);
 
 export default routesAuth;

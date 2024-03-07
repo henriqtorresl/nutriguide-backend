@@ -89,4 +89,19 @@ export default class NutricionistaRepository {
         });
     }
 
+    public async insertNutricionista(userNutricionista: UsuarioNutricionista, idUsuario: number): Promise<UsuarioNutricionista | undefined> {
+        return new Promise((resolve, reject) => {
+            this.database.query<UsuarioNutricionista[]>(
+                nutricionista.inserir, 
+                [userNutricionista.regiao, userNutricionista.faculdade, userNutricionista.especialidade, userNutricionista.redesocial, idUsuario], 
+                (err, result) => {
+                    if (err) {
+                        reject(err);            
+                    } else {
+                        resolve(result?.[0]);
+                    }
+            });
+        });
+    }
+
 }

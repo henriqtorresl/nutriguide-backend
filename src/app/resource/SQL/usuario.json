@@ -2,5 +2,7 @@
     "findByName": "SELECT * FROM tb_usuario where nome_usuario = ?",
     "findById": "SELECT * FROM tb_usuario where id_usuario = ?",
     "inserirPaciente": "INSERT INTO tb_usuario (cpf, email, sexo, telefone, cep, data_nascimento, nome_usuario, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, 'paciente');",
-    "trazUltimoIdInserido": "SELECT id_usuario FROM tb_usuario ORDER BY id_usuario DESC LIMIT 1"
+    "inserirNutricionista": "INSERT INTO tb_usuario (cpf, email, sexo, telefone, cep, data_nascimento, nome_usuario, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, 'nutricionista');",
+    "trazUltimoIdInserido": "SELECT id_usuario FROM tb_usuario ORDER BY id_usuario DESC LIMIT 1",
+    "trazEmailsCadastrados": "SELECT email FROM tb_usuario"
 }

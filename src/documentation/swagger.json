@@ -146,6 +146,48 @@
         }
       }
     },
+    "/cadastro": {
+      "post": {
+        "tags": [
+          "Auth Resource"
+        ],
+        "description": "Faz o cadastro de um nutricionista na aplicação e gera um token jwt",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/user/nome": {
       "get": {
         "tags": [

@@ -2,5 +2,6 @@
     "trazerTodos": "SELECT * FROM tb_nutricionista INNER JOIN tb_usuario USING (id_usuario) ORDER BY id_nutricionista DESC",
     "trazerPorId": "SELECT * FROM tb_nutricionista INNER JOIN tb_usuario USING (id_usuario) WHERE id_nutricionista = ?",
     "trazerPorNomeUsuario": "SELECT * FROM tb_nutricionista INNER JOIN tb_usuario USING (id_usuario) WHERE nome_usuario = ?",
-    "trazerFiltrados": "SELECT * FROM tb_nutricionista INNER JOIN tb_usuario USING (id_usuario) WHERE TRUE "
+    "trazerFiltrados": "SELECT * FROM tb_nutricionista INNER JOIN tb_usuario USING (id_usuario) WHERE TRUE ",
+    "inserir": " INSERT INTO tb_nutricionista (regiao, faculdade, especialidade, redesocial, id_usuario) VALUES (?, ?, ?, ?, ?)"
 }
