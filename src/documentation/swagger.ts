@@ -5,7 +5,7 @@ const doc = {
         title: 'Nutriguide API',
         description: 'Documentação dos endpoints do backend do projeto Nutriguide'
     },
-    host: 'localhost:3000'
+    host: 'https://nutriguide-api.vercel.app'
 };
 
 const outputFile = './src/documentation/swagger.json';

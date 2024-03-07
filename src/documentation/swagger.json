@@ -5,7 +5,7 @@
     "description": "Documentação dos endpoints do backend do projeto Nutriguide",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://nutriguide-api.vercel.app",
   "basePath": "/",
   "schemes": [
     "http"
