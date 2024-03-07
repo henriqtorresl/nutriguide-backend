@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Nutriguide API",
-    "description": "Documentação dos endpoints do backend do projeto Nutriguide",
+    "description": "Documentação dos endpoints do backend do projeto Nutriguide, desenvolvido por Henrique Torres (https://github.com/henriqtorresl)",
     "version": "1.0.0"
   },
   "host": "https://nutriguide-api.vercel.app",

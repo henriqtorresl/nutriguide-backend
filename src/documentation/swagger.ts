@@ -3,7 +3,7 @@ import swaggerAutogen from 'swagger-autogen';
 const doc = {
     info: {
         title: 'Nutriguide API',
-        description: 'Documentação dos endpoints do backend do projeto Nutriguide'
+        description: 'Documentação dos endpoints do backend do projeto Nutriguide, desenvolvido por Henrique Torres (https://github.com/henriqtorresl)'
     },
     host: 'https://nutriguide-api.vercel.app'
 };
