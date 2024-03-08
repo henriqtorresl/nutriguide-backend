@@ -110,7 +110,50 @@ export default class AuthController {
 
         const usuarioNutricionista: UsuarioNutricionista = req.body;
 
-        console.log(usuarioNutricionista);
+        // Validações
+        if (!usuarioNutricionista.nome_usuario) {
+            return res.status(422).json({ msg: 'Por favor, informe seu nome!' });
+        }
+
+        if (!usuarioNutricionista.cpf) {
+            return res.status(422).json({ msg: 'Por favor, informe seu CPF!' });
+        }
+
+        if (!usuarioNutricionista.email) {
+            return res.status(422).json({ msg: 'Por favor, informe seu e-mail!' });
+        }
+
+        if (!usuarioNutricionista.sexo) {
+            return res.status(422).json({ msg: 'Por favor, selecione seu sexo!' });
+        }
+
+        if (!usuarioNutricionista.cep) {
+            return res.status(422).json({ msg: 'Por favor, informe seu CEP!' });
+        }
+
+        if (!usuarioNutricionista.telefone) {
+            return res.status(422).json({ msg: 'Por favor, informe seu número de telefone!' });
+        }
+
+        if (!usuarioNutricionista.data_nascimento) {
+            return res.status(422).json({ msg: 'Por favor, informe sua data de nascimento!' });
+        }
+
+        if (!usuarioNutricionista.faculdade) {
+            return res.status(422).json({ msg: 'Por favor, selecione a faculdade em que se graduou!' });
+        }
+
+        if (!usuarioNutricionista.especialidade) {
+            return res.status(422).json({ msg: 'Por favor, selecione sua especialidade!' });
+        }
+
+        if (!usuarioNutricionista.regiao) {
+            return res.status(422).json({ msg: 'Por favor, informe sua região!' });
+        }
+
+        if (!usuarioNutricionista.redesocial) {
+            return res.status(422).json({ msg: 'Por favor, informe sua rede social!' });
+        }
 
         const emails = await AuthController.service.emailsCadastrados();
  
