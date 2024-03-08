@@ -19,3 +19,7 @@ Para mais informações: [Node.js](https://nodejs.org/en/docs).
 - Primeiro fazer o build do projeto: `npm run build`
 - Rodar o comando `vercel`
 - E por último rodar o comando `vercel --prod`
+
+## Url de Produção
+
+Para acessar nosso site: `https://nutriguide-api.vercel.app/`
