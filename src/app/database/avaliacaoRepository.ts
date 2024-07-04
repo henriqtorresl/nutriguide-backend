@@ -1,50 +1,31 @@
 import Avaliacao from '../models/Avaliacao';
-import urlDb from './../connection/configDb';
-import mysql from 'mysql2';
-import avaliacao from '../resource/SQL/avaliacao.json'
+import openDb from './../connection/configDb';
+import avaliacao from '../resource/SQL/avaliacao.json';
 
 export default class AvaliacaoRepository {
 
-    public database;
+    public database: any;
 
     constructor() {
-        this.database = mysql.createPool(urlDb);
+        this.initializeDb();
+    }
+
+    private async initializeDb() {
+        this.database = await openDb();
     }
 
     public async getAvaliacoesById(idNutricionista: string): Promise<Avaliacao[] | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<Avaliacao[]>(
-                avaliacao.trazerPorIdNutricionista,
-                [idNutricionista],  
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-                    }
-            });
-        });
+        const result = await this.database.all(
+            avaliacao.trazerPorIdNutricionista,
+            [idNutricionista]
+        );
+        return result;
     }
 
     public async insertAvaliacao(aval: Avaliacao): Promise<void> {
-        await new Promise((resolve, reject) => {
-            this.database.query(
-                avaliacao.inserir, 
-                [aval.avaliacao, aval.nota_nutricionista, aval.id_nutricionista], 
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-
-                         
-                    }
-            });
-        });
+        await this.database.run(
+            avaliacao.inserir, 
+            [aval.avaliacao, aval.nota_nutricionista, aval.id_nutricionista]
+        );
     }
-
 }

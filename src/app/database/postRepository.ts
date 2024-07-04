@@ -1,85 +1,58 @@
 import Post from '../models/Post';
-import urlDb from './../connection/configDb';
-import mysql from 'mysql2';
-import post from '../resource/SQL/post.json'
+import openDb from './../connection/configDb';
+import post from '../resource/SQL/post.json';
 
 export default class PostRepository {
 
-    public database;
+    public database: any;
 
     constructor() {
-        this.database = mysql.createPool(urlDb);
+        this.initializeDb();
+    }
+
+    private async initializeDb() {
+        this.database = await openDb();
     }
 
     public async getAllPost(): Promise<Post[] | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<Post[]>(
-                post.trazerTodos,
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.all(post.trazerTodos);
+            return result;
+        } catch (err) {
+            console.error('Error getting all posts:', err);
+            throw err;
+        }
     }
 
     public async getPostByIdNutricionista(idNutricionista: string): Promise<Post[] | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<Post[]>(
-                post.trazerPorIdNutricionista,
-                [idNutricionista],  
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.all(post.trazerPorIdNutricionista, [idNutricionista]);
+            return result;
+        } catch (err) {
+            console.error('Error getting posts by nutritionist ID:', err);
+            throw err;
+        }
     }
 
     public async insertPost(postagem: Post): Promise<void> {
-        await new Promise((resolve, reject) => {
-            this.database.query(
+        try {
+            await this.database.run(
                 post.inserir, 
-                [postagem.conteudo_post, postagem.data_criacao, postagem.id_nutricionista, postagem.link_iframe], 
-                (err, result) => {
-                    if (err) {
-                        console.log('erro: ', err);
-
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-
-                         
-                    }
-            });
-        });
+                [postagem.conteudo_post, postagem.data_criacao, postagem.id_nutricionista, postagem.link_iframe]
+            );
+        } catch (err) {
+            console.error('Error inserting post:', err);
+            throw err;
+        }
     }
 
     public async getNutriByIdPost(idPost: string): Promise<any | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<any>(
-                post.trazerNutriPorIdPost,
-                [idPost],  
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result?.[0]);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.get(post.trazerNutriPorIdPost, [idPost]);
+            return result;
+        } catch (err) {
+            console.error('Error getting nutritionist by post ID:', err);
+            throw err;
+        }
     }
-
 }

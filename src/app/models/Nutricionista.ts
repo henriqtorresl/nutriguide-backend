@@ -1,6 +1,4 @@
-import { RowDataPacket } from "mysql2";
-
-export default interface Nutricionista extends RowDataPacket {
+export default interface Nutricionista {
     id_nutricionista: number;
     regiao: string;
     faculdade: string;

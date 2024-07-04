@@ -1,50 +1,38 @@
 import PlanoAlimentar from '../models/PlanoAlimentar';
-import urlDb from './../connection/configDb';
-import mysql from 'mysql2';
-import planoAlimentar from '../resource/SQL/planoAlimentar.json'
+import openDb from './../connection/configDb';
+import planoAlimentar from '../resource/SQL/planoAlimentar.json';
 
 export default class PlanoAlimentarRepository {
 
-    public database;
+    public database: any;
 
     constructor() {
-        this.database = mysql.createPool(urlDb);
+        this.initializeDb();
+    }
+
+    private async initializeDb() {
+        this.database = await openDb();
     }
 
     public async insertPlanoAlimentar(plano: PlanoAlimentar): Promise<void> {
-        await new Promise((resolve, reject) => {
-            this.database.query(
+        try {
+            await this.database.run(
                 planoAlimentar.inserir, 
-                [plano.id_paciente, plano.nome_plano], 
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-
-                         
-                    }
-            });
-        });
+                [plano.id_paciente, plano.nome_plano]
+            );
+        } catch (err) {
+            console.error('Error inserting diet plan:', err);
+            throw err;
+        }
     }
 
     public async getPlanoAlimentarByName(nome: string): Promise<PlanoAlimentar | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<PlanoAlimentar[]>(
-                planoAlimentar.trazerPorNome,
-                [nome],  
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result?.[0]);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.get(planoAlimentar.trazerPorNome, [nome]);
+            return result;
+        } catch (err) {
+            console.error('Error getting diet plan by name:', err);
+            throw err;
+        }
     }
-
 }

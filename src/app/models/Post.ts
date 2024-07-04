@@ -1,6 +1,4 @@
-import { RowDataPacket } from "mysql2";
-
-export default interface Post extends RowDataPacket {
+export default interface Post {
     id_post: number,
     conteudo_post: string,
     data_criacao: Date,

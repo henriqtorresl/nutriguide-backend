@@ -1,6 +1,4 @@
-import { RowDataPacket } from "mysql2";
-
-export default interface Comentario extends RowDataPacket {
+export default interface Comentario {
     id_comentario: number,
     data_criacao: Date,
     conteudo: string,

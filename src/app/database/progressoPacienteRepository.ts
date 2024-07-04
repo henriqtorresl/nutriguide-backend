@@ -1,50 +1,39 @@
 import ProgressoPaciente from '../models/ProgressoPaciente';
-import urlDb from './../connection/configDb';
-import mysql from 'mysql2';
-import progressoPaciente from '../resource/SQL/progressoPaciente.json'
+import openDb from './../connection/configDb';
+import progressoPaciente from '../resource/SQL/progressoPaciente.json';
 
 export default class ProgressoPacienteRepository {
 
-    public database;
+    public database: any;
 
     constructor() {
-        this.database = mysql.createPool(urlDb);
+        this.initializeDb();
+    }
+
+    private async initializeDb() {
+        this.database = await openDb();
     }
 
     public async getProgressoByIdPaciente(idPaciente: string): Promise<ProgressoPaciente[] | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<ProgressoPaciente[]>(
-                progressoPaciente.trazerPorIdPaciente,
-                [idPaciente],  
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.all(progressoPaciente.trazerPorIdPaciente, [idPaciente]);
+            return result;
+        } catch (err) {
+            console.error('Error getting progress by patient ID:', err);
+            throw err;
+        }
     }
 
     public async insertProgressoPaciente(progresso: ProgressoPaciente): Promise<void> {
-        await new Promise((resolve, reject) => {
-            this.database.query<any>(
+        try {
+            await this.database.run(
                 progressoPaciente.inserir, 
-                [progresso.id_paciente, progresso.data, progresso.peso, progresso.habitos_alimentares, progresso.medidas_corporais, progresso.queixa, progresso.nivel_atividade_fisica, progresso.suplementacao_atual], 
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result?.[0]);
-
-                         
-                    }
-            });
-        });
+                [progresso.id_paciente, progresso.data, progresso.peso, progresso.habitos_alimentares, progresso.medidas_corporais, progresso.queixa, progresso.nivel_atividade_fisica, progresso.suplementacao_atual]
+            );
+        } catch (err) {
+            console.error('Error inserting progress:', err);
+            throw err;
+        }
     }
 
 }

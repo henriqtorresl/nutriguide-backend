@@ -1,30 +1,27 @@
 import Refeicao from '../models/Refeicao';
-import urlDb from './../connection/configDb';
-import mysql from 'mysql2';
-import refeicao from '../resource/SQL/refeicao.json'
+import openDb from './../connection/configDb';
+import refeicao from '../resource/SQL/refeicao.json';
 
 export default class RefeicaoRepository {
 
-    public database;
+    public database: any;
 
     constructor() {
-        this.database = mysql.createPool(urlDb);
+        this.initializeDb();
+    }
+
+    private async initializeDb() {
+        this.database = await openDb();
     }
 
     public async getAllRefeicoes(): Promise<Refeicao[] | undefined> {
-        return new Promise((resolve, reject) => {
-            this.database.query<Refeicao[]>(
-                refeicao.trazerTodas, 
-                (err, result) => {
-                    if (err) {
-                        reject(err);
-
-                         
-                    } else {
-                        resolve(result);
-                    }
-            });
-        });
+        try {
+            const result = await this.database.all(refeicao.trazerTodas);
+            return result;
+        } catch (err) {
+            console.error('Error getting all meals:', err);
+            throw err;
+        }
     }
 
 }

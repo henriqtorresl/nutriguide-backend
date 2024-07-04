@@ -55,7 +55,7 @@ export default class AuthController {
 
             const token = jwt.sign(
                 {
-                    id: user.id
+                    id: user.id_usuario
                 }
                 , SECRET!
             );
