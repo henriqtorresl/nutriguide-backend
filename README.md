@@ -8,7 +8,7 @@ Tecnologias usadas neste projeto:
 
 - Dependências do node: `npm install`
 
-Para rodar o projeto localmente, execute `npm run dev`, o projeto vai rodar na porta 8080: `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar algum dos arquivos de origem por conta do [Nodemon](https://www.npmjs.com/package/nodemon).
+Para rodar o projeto localmente, execute `npm run dev`, o projeto vai rodar na porta 3000: `http://localhost:3000/`. O aplicativo será recarregado automaticamente se você alterar algum dos arquivos de origem por conta do [Nodemon](https://www.npmjs.com/package/nodemon).
 
 ## Documentação do Node.js
 
