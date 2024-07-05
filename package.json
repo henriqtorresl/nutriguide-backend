@@ -34,7 +34,6 @@
     "nodemailer": "^6.9.7",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
-    "swagger-ui-express": "4.3.0",
-    "vercel": "^33.5.4"
+    "swagger-ui-express": "4.3.0"
   }
 }
